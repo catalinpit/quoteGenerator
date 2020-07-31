@@ -51,9 +51,15 @@ body {
 }
 
 .quote-author {
+    display: flex;
+    justify-content: center;
     margin: 0 0 20px 0;
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+.author {
+    margin-left: 5px;
 }
 
 .quote-buttons {
