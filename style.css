@@ -32,7 +32,8 @@ body {
 }
 
 .quote {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin: 0 20px;
 }
 
 .fa-quote-left, .fa-quote-right {
@@ -55,6 +56,35 @@ body {
 .quote-buttons {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.new-quote {
+    font-size: 1.25rem;
+    height: 2.5rem;
+    width: 8.5rem;
+    border: none;
+    background-color: #44067d;
+    outline: none;
+    box-shadow: 5px 2.5px 2px 0px #2b0153;
+    color: #fff;
+}
+
+button:hover {
+    transform: translate(0, 0.15rem);
+    box-shadow: 0px 0px 0px 0px #2b0153;
+}
+
+.twitter-button {
+    font-size: 3rem;
+    border: none;
+    outline: none;
+    background: none;
+    color: #38a1f3;
 }
 
 @media screen and (max-width: 1000px) {
