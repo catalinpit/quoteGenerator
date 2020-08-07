@@ -1,5 +1,6 @@
-const quote = document.getElementsByClassName('quote');
-const author = document.getElementsByClassName('author');
+const quote = document.getElementById('quote');
+const author = document.getElementById('author');
+const twitterButton = document.getElementsByClassName('twitter');
 
 // Quote API
 const getQuote = async () => {
@@ -8,13 +9,19 @@ const getQuote = async () => {
     try {
         const response = await fetch(api);
         const data = await response.json();
+        const quoteContent = data.contents.quotes[0].quote;
+        let authorQuote = data.contents.quotes[0].author;
+        
+        if (authorQuote === '') {
+            author.innerText = 'Unknown'
+        } else {
+            author.innerText = authorQuote;
+        }
 
-        // Replace the HTML
-        quote.innerHTML = data.contents.quotes[0].quote;
-        author.innerHTML = data.contents.quotes[0].author;
+        quote.innerText = quoteContent;
     } catch (err) {
-        //getQuote();
         console.warn(err);
+        getQuote();
     }
 }
 
