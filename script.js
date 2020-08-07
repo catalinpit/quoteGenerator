@@ -1,6 +1,7 @@
 const quote = document.getElementById('quote');
 const author = document.getElementById('author');
 const twitterButton = document.getElementById('twitter-button');
+const newQuoteButton = document.getElementById('newQuoteButton');
 
 // Quote API
 const getQuote = async () => {
@@ -12,8 +13,8 @@ const getQuote = async () => {
         const quoteContent = data[Math.floor((Math.random() * 1643) + 1)].text;
         let authorQuote = data[Math.floor((Math.random() * 1643) + 1)].author;
         
-        if (authorQuote === '') {
-            author.innerText = 'Unknown'
+        if (authorQuote.lenght < 1) {
+            author.innerText = 'Unknown';
         } else {
             author.innerText = authorQuote;
         }
@@ -32,11 +33,14 @@ const getQuote = async () => {
 }
 
 function tweetQuote() {
-    const quote = quote.innerText;
-    const author = author.innerText;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} by ${author}`;
+    const quoteText = quote.innerText;
+    const authorQuote = author.innerText;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText} by ${authorQuote}`;
 
     window.open(twitterUrl, '_blank');
 }
+
+newQuoteButton.addEventListener('click', getQuote);
+twitterButton.addEventListener('click', tweetQuote);
 
 getQuote();
