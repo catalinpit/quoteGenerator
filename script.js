@@ -1,10 +1,13 @@
+const quoteContainer = document.getElementById('quote-container');
 const quote = document.getElementById('quote');
 const author = document.getElementById('author');
 const twitterButton = document.getElementById('twitter-button');
 const newQuoteButton = document.getElementById('newQuoteButton');
+const loader = document.getElementById('loader');
 
 // Quote API
 const getQuote = async () => {
+    loading();
     const api = 'https://type.fit/api/quotes';
 
     try {
@@ -19,13 +22,8 @@ const getQuote = async () => {
             author.innerText = authorQuote;
         }
 
-        if (quoteContent.length > 120) {
-            quote.classList.add('long-quote');
-        } else {
-            quote.classList.remove('long-quote');
-        }
-
         quote.innerText = quoteContent;
+        complete();
     } catch (err) {
         console.warn(err);
         getQuote();
@@ -38,6 +36,18 @@ function tweetQuote() {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quoteText} by ${authorQuote}`;
 
     window.open(twitterUrl, '_blank');
+}
+
+function loading() {
+    loader.hidden = false;
+    quoteContainer.style.visibility = 'hidden';
+}
+
+function complete() {
+    if (!loader.hidden) {
+        quoteContainer.style.visibility = 'initial';
+        loader.hidden = true;
+    }
 }
 
 newQuoteButton.addEventListener('click', getQuote);
